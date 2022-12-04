@@ -259,10 +259,130 @@ class NumGuesserGame(Score):  # get x amount of guesses, with one player choosin
 
 
 
-class TikTakToe(Score): # potential tik tac toe game
+class Pig(Score): # pig 
      def __init__(self,player1,player2):
         super().__init__(player1,player2)
-        pass 
+        p1_score=0   # insert a while true here 
+        p2_score=0
+        p1_turn=True
+        p2_turn=False
+        hold1=False
+        hold2=False
+        print('\nThe object of Pig is to be the first player to earn 100 points. You achieve this by rolling the dice and adding which number you roll to your overall score. Players are permitted to roll as many times as they’d like during their turn, but beware of rolling a 1! Doing so will cost you all the points you’ve collected during your turn\n')
+        while p1_score<=10 or p2_score<=10:
+            if hold1 and hold2:
+                break;
+            else:
+                if p1_turn: 
+                    if p1_score<10:
+                        roll_1= input('Player 1, do you want to roll?(y/n) ')
+                        if roll_1=='y':
+                            dice1=random.randint(1,6)
+                            
+
+                            if dice1==1:
+                                    dummy=p1_score
+                                    print('Sorry, player 1 rolled a', dice1,' you lost all your points this turn')
+                                    print('Your score this turn is', dummy,'\n')
+                                    p2_turn=True
+                                    p1_turn=False
+                                    
+                                    
+                            elif dice1!=1:
+                                
+                                    print('Player 1 rolled a ',dice1)
+                                    
+                                    p1_score=p1_score + dice1
+                                    dummy=p1_score
+                                    if p1_score>=10:
+                                        print('Player one your score is: ',p1_score)
+                                        break;
+                                    else:print('Player 1, score is', p1_score,'\n')
+                                    terminate_turn=input('Do you want to hold?(y/n)')
+                                    if terminate_turn=='n':
+                                        p2_turn=False
+                                        p1_turn=True
+                                    else: 
+                                        p2_turn=True
+                                        p1_turn=False
+                                        hold1=True
+                                
+
+                                    
+                        
+                        
+                        elif roll_1=='n':   
+                            print('Your score is: ', p1_score,)
+                            p1_turn=False  
+                            p2_turn=True
+                            hold1=True
+            
+                    
+                    else:
+                        break
+
+
+                
+                
+                
+                
+                elif p2_turn: 
+                    if p2_score<10:
+                        roll_2= input('Player 2, do you want to roll?(y/n) ')
+                        if roll_2=='y':
+                            dice2=random.randint(1,6)
+                            
+
+                            if dice2==1:
+                                    print('Sorry, player2 rolled a', dice2,' you lost all your points this turn\n')
+                                    print('Your score is', p2_score)
+                                    p2_turn=False
+                                    p1_turn=True
+                                
+                                    
+                            elif dice2!=1:
+                                
+                                    print('Player 2 rolled a ',dice2)
+                                    
+                                    p2_score=p2_score + dice2
+                                    if p2_score>=10:
+                                        print('Player 2, your score is: ',p2_score)
+                                        break;
+                                    else:print('Player 2, your score is', p2_score,'\n')
+                                    terminate_turn=input('Do you want to hold?(y/n)')
+                                    if terminate_turn=='n':
+                                        p2_turn=True
+                                        p1_turn=False
+                                    else: 
+                                        p2_turn=False
+                                        p1_turn=True
+                                        hold2=True
+
+                                    
+                        
+                        
+                        elif roll_1=='n':   
+                            print('Your score is: ', p1_score,)
+                            p1_turn=False  
+                            p2_turn=True       
+                            hold2=True
+
+                    else:
+                        break
+
+
+
+
+        if p1_score>p2_score: 
+            print('Player 1 score is:',p1_score,'and Player 2 score is:',p2_score)  # send to score here 
+            print('player 1 wins with a score of',p2_score)
+        elif p1_score<p2_score:         
+            print('Player 2 score is:',p2_score,'and Player 1 score is:',p1_score)
+            print('player 2 wins with a score of: ',p2_score)
+                
+            
+                            
+                            
 
 
 
