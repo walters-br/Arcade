@@ -10,7 +10,7 @@ class Score(): # keeps traack of score, every class will inherit it's score keep
     def add_score2(self,num):
         self.score2 = self.score2 + num
     def __str__(self) -> str:
-         print(f"Overall Player 2 has a score of: ",{self.score2},"\n and Player 1 has a score of: ",{self.score1}) #print statement for scrore across all the games 
+         print(f"Overall Player 2 has a score of:",{self.score2},"\nand Player 1 has a score of: ",{self.score1}) #print statement for scrore across all the games 
 # Each instance of any below game assumes 2 players 
 
 class RPS(Score): # rock paper scissors
@@ -324,8 +324,8 @@ class HeadsOrTails(Score):  # each player bets on heads or tail
         
         while True: 
           answer = random.randint(1,2)  # gets a random num netween 1 and 2 that will represent the sides of a coin
-          player1_guess = input(" Plater 1, State your guess H or T")  # aks players to choose what the coin will be 
-          player2_guess = input(" Plater 1, State your guess H or T")
+          player1_guess = input(" Plater 1, State your guess H or T: ")  # aks players to choose what the coin will be 
+          player2_guess = input(" Plater 1, State your guess H or T: ")
           
           
           if player1_guess == "H":  #
