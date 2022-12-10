@@ -1,113 +1,132 @@
 import random
 import time
 class Score(): # keeps traack of score, every class will inherit it's score keep properties   
-    def __init__(self,player1,player2) -> None:
-       self.player1 = player1  # name of player 1 
-       self.player2 = player2  # name of player 2 
-    
-    def scorecount(x):# each class needs a way to store score and return it 
-        pass 
-
+    def __init__(self,score1,score2) -> None:
+      
+       self.score2  =score2
+       self.score1 = score1
+    def add_score1(self, num):# each class needs a way to store score and return it 
+        self.score1 = self.score1 + num 
+    def add_score2(self,num):
+        self.score2 = self.score2 + num
+    def __str__(self) -> str:
+         print(f"Overall Player 2 has a score of: ",{self.score2},"\n and Player 1 has a score of: ",{self.score1}) #print statement for scrore across all the games 
 # Each instance of any below game assumes 2 players 
 
 class RPS(Score): # rock paper scissors
-    def __init__(self,player1,player2):
-        super().__init__(player1,player2) 
+    def __init__(self,score1,score2):
+        super().__init__(score1,score2) 
     def start(self):
      while True:
         player1input= input("Player One Choose Rock,Paper,or Scissors\n")
         player2input = input("Player Two Choose Rock,Paper,or Scissors\n")
-        
         if player1input == player2input: 
             print(f"It's a draw, both players selected",{player2input})
-        
+    
         elif player1input == "Rock": 
                 if player2input=="Scissors":
-                    print("Player One wins, Rock beats Scissors")   # add class specific object here 
+                    print("Player 1 wins, Rock beats Scissors")   # add class specific object here 
+                    self.add_score1(1)
                 else: 
-                    print("Plater 2 wins Paper Covers Rock")
-        
+                    print("Player 2 wins Paper Covers Rock")
+                    self.add_score2(1)
         
         elif player1input == "Scissors":
+                
                 if player2input == "Rock":
                     print("Player 2 wins, Rock beats Scissors")   # add class specific object here 
+                    self.add_score2(1)
                 else: 
-                    print("Plater 1 wins, Scissors cuts paper")
+                    print("Player 1 wins, Scissors cuts paper")
+                    self.add_score1(1)
 
         
         elif player1input == "Paper": 
             if player2input =="Rock":
-                    print("Player One wins, Paper beats Rock")   # add class specific object here 
+                    print("Player 1 wins, Paper beats Rock")   # add class specific object here 
+                    self.add_score1(1)
             else: 
                     print("Plater 2 wins, Scissors beats Paper")
+                    self.add_score2(1)
 
+    
+       
         Continue = input('Play againz?(y/n):')    # unit test 
         if Continue == 'n': 
             break 
+       
         else: 
             continue 
 
 
 
 class madlibs(Score): #madlibs game, gives player 1 or 2 a score if the other finds it funny
-    def __init__(self,player1,player2):
-        super().__init__(player1,player2) # gets player names from Score patent class
+    def __init__(self,score1,score2):
+        super().__init__(score1,score2) # gets player names from Score patent class
     def start(self):
-        adj1= input('PLayer 1 Enter an Adjective: ')
-        adj2= input('Player 1, Enter another Adjective: ')
-        noun1=input('Player 1 Enter a noun: ')
-        noun2 = input('Player 1 Enter another noun: ')
-        game=  input('Player 1 Enter a game: ')
+        while True:
+            adj1= input('PLayer 1 Enter an Adjective: ')
+            adj2= input('Player 1, Enter another Adjective: ')
+            noun1=input('Player 1 Enter a noun: ')
+            noun2 = input('Player 1 Enter another noun: ')
+            game=  input('Player 1 Enter a game: ')
 
-        pluralnoun1=input('Player 1Enter a plural noun:')
-        verb_ending_w1=input('Player 1 Enter a verb ending with ing\": ')
-        verb_ending_w2=input('Player 1 Enter another verb ending with ing\": ')
-
-
-        madlib = f"\n A vacation is when you take a trip to some {adj1} place with your {adj2} family. \
-        Usually you go to some place that is near a/an {noun1} or up a/an a {noun2}. A good vacation place is one where you can ride or play\
-        {game} or go hunting for {pluralnoun1}. I like to spend my time {verb_ending_w1} or {verb_ending_w2}" # inserts the words above into the madlib  string based on user input 
-
-        print("Player 1's madlib was: \n \n \n ",madlib)  # prints player 1 madlib
+            pluralnoun1=input('Player 1Enter a plural noun:')
+            verb_ending_w1=input('Player 1 Enter a verb ending with ing\": ')
+            verb_ending_w2=input('Player 1 Enter another verb ending with ing\": ')
 
 
+            madlib = f"\n A vacation is when you take a trip to some {adj1} place with your {adj2} family. \
+            Usually you go to some place that is near a/an {noun1} or up a/an a {noun2}. A good vacation place is one where you can ride or play\
+            {game} or go hunting for {pluralnoun1}. I like to spend my time {verb_ending_w1} or {verb_ending_w2}" # inserts the words above into the madlib  string based on user input 
 
+            print("Player 1's madlib was: \n \n \n ",madlib)  # prints player 1 madlib
 
 
 
-        adj3= input('Enter an Adjective: ')
-        adj4= input('Enter another Adjective: ')
-        noun3=input('Enter a noun: ')
-        noun4 = input('Enter another noun: ')   #prompts player 2 to enter the words to complete the amdlib string
-        game2=  input('Enter a game: ')
-
-        pluralnoun3=input('Enter a plural noun:')
-        verb_ending_w3=input('Enter a verb ending with ing\": ')
-        verb_ending_w4=input('Enter another verb ending with ing\": ')
 
 
-        madlib2= f"\n A vacation is when you take a trip to some {adj3} place with your {adj4} family. \
-        Usually you go to some place that is near a/an {noun3} or up a/an a {noun4}. A good vacation place is one where you can ride or play\
-        {game2} or go hunting for {pluralnoun3}. I like to spend my time {verb_ending_w3} or {verb_ending_w4}"    # inserts the words above into the madlib  string based on user input
 
-        print("Player 2's madlib was: \n \n \n ",madlib2)  # prints player 1 madlib
+            adj3= input('Enter an Adjective: ')
+            adj4= input('Enter another Adjective: ')
+            noun3=input('Enter a noun: ')
+            noun4 = input('Enter another noun: ')   #prompts player 2 to enter the words to complete the amdlib string
+            game2=  input('Enter a game: ')
 
-        playerwinner=input("Which player had the more entertaining madlib?(1/2)")
+            pluralnoun3=input('Enter a plural noun:')
+            verb_ending_w3=input('Enter a verb ending with ing\": ')
+            verb_ending_w4=input('Enter another verb ending with ing\": ')
 
-        if playerwinner==1:
-            print('Player 1 wins ')
-        else: 
-            print('Player 2 wins')
+
+            madlib2= f"\n A vacation is when you take a trip to some {adj3} place with your {adj4} family. \
+            Usually you go to some place that is near a/an {noun3} or up a/an a {noun4}. A good vacation place is one where you can ride or play\
+            {game2} or go hunting for {pluralnoun3}. I like to spend my time {verb_ending_w3} or {verb_ending_w4}"    # inserts the words above into the madlib  string based on user input
+
+            print("Player 2's madlib was: \n \n \n ",madlib2)  # prints player 1 madlib
+
+            playerwinner=input("Which player had the more entertaining madlib?(1/2)")
+
+            if playerwinner==1:
+                print('Player 1 wins ')
+                self.add_score1(1)   # adds score to player 1 
+            else: 
+                print('Player 2 wins')
+                self.add_score2(1)  # adds score to player 2 
+            
+            Continue = input('Play againz?(y/n):')    # unit test 
+            if Continue == 'n': 
+                break 
+        
+            else: 
+                continue 
 
 
 class Hangman(Score):  # hangman game 
-    def __init__(self,player1,player2):
-        super().__init__(player1,player2) 
+    def __init__(self,score1,score2):
+        super().__init__(score1,score2) 
     def start(self):
-        intialize=True
-        player1_win=0
-        player2_win=0
-        while intialize: 
+        
+        while True: 
           start = int(input('Which player wants to create a word (1 or 2)\n'))
           
           if start==1: 
@@ -146,7 +165,7 @@ class Hangman(Score):  # hangman game
         
                     if Win==1:
                         print('You guessed the word, the word was', answer_string)
-                        player1_win+=1
+                        self.add_score2(1)   # adds score to player 1 
                         break   # add a do you want to continue here 
                     elif num_of_guesses==6 :
                          print('Sorry the word was',answer_string )
@@ -158,49 +177,57 @@ class Hangman(Score):  # hangman game
     
     
     
-    
-        else: 
-           answer_string2=input('Player 2, enter the word if your choice: ')
-           answer_string2= answer_string2.upper()
-           num_of_guesses = 0
-           attempts=[]
-           word_display= "_" * len(answer_string2)
-           Win = 0
-           print('Player 1, you have 6 tries to guess the word. Enter one letter at a time ')
         
-           while num_of_guesses < 8 :
-            guess=input('Player 1, please guess a letter: ').upper() # turns all guesses into uppercase form
+          else: 
+                answer_string2 = input('Player 1 , enter a word of your choice. Make sure Player 2 is looking away. ')
+                answer_string2= answer_string2.upper()
+                num_of_guesses = 0
+                attempts=[]
+                word_display= "_" * len(answer_string2)
+                Win = 0
+                print('Player 1, you have 6 tries to guess the word. Enter one letter at a time ')
+            
+                while num_of_guesses < 8 :
+                    guess=input('Player 1, please guess a letter: ').upper() # turns all guesses into uppercase form
         
-            if len(guess)==1 and guess.isalpha(): # if player enters a letter and is a letter
+                    if len(guess)==1 and guess.isalpha(): # if player enters a letter and is a letter
             
             
             
-                if guess not in answer_string2:
-                    print('Sorry,', guess,'is not in the word')
-                    num_of_guesses +=1
-                    print('You have ',6-num_of_guesses,' left.')
-                    attempts.append(guess) # throws the guess into a list of previous guesses
-                else:
-                    print('Good choice' , guess, ' is in the word')
-                    attempts.append(guess)
-                    correct_attempts_display=list(word_display)
-                    indices = [x for x, letter in enumerate(answer_string2) if letter==guess]
-                    for index in indices: 
-                        correct_attempts_display[index]=guess
-                        word_display=''.join(correct_attempts_display)
-                    if '_' not in word_display: 
-                       Win=1
-            else:
-             print('Not a valid guess')
+                        if guess not in answer_string2:
+                            print('Sorry,', guess,'is not in the word')
+                            num_of_guesses +=1
+                            print('You have ',6-num_of_guesses,' left.')
+                            attempts.append(guess) # throws the guess into a list of previous guesses
+                        else:
+                            print('Good choice' , guess, ' is in the word')
+                            attempts.append(guess)
+                            correct_attempts_display=list(word_display)
+                            indices = [x for x, letter in enumerate(answer_string2) if letter==guess]
+                            for index in indices: 
+                                correct_attempts_display[index]=guess
+                                word_display=''.join(correct_attempts_display)
+                            if '_' not in word_display: 
+                                Win=1
+                    else:
+                        print('Not a valid guess')
         
-            if Win==1:
-                print('You guessed the word, the word was', answer_string2)
-                player2_win+=1
-                break   # add a do you want to continue here 
-            elif num_of_guesses==6 :
-                print('Sorry the word was',answer_string2)
-                break
-
+                    if Win==1:
+                        print('You guessed the word, the word was', answer_string)
+                        self.add_score1(1)   # adds score to player 1 
+                        break   # add a do you want to continue here 
+                    elif num_of_guesses==6 :
+                         print('Sorry the word was',answer_string )
+                         break
+            
+        
+          Continue = input('Play againz?(y/n):')    # unit test 
+          if Continue == 'n': 
+                    break 
+       
+          else: 
+                    continue 
+         
 
     
     
@@ -209,14 +236,14 @@ class Hangman(Score):  # hangman game
     
 
 class Categories(Score): # twenty one questions game 
-     def __init__(self,player1,player2):
-        super().__init__(player1,player2)
+     def __init__(self,score1,score2):
+        super().__init__(score1,score2)
         
      def start(self):
         while True: 
           
             print('Categories')
-            alphabet= "abcdefghijklmnopqrstuvwxyz" # s
+            alphabet= "abcdefghijklmnopqrstuvwxyz" # string with alphabet 
             input('Please enter a category for both players to guess in to ')
             print('You can enter any item into the category that beings with:',random.choice(alphabet),"\n") # selects random number from the alphabet string
 
@@ -225,12 +252,12 @@ class Categories(Score): # twenty one questions game
 
 
             time.sleep(1)
-            print("Player 2, you have 30 seconds to enter into the first category ")   # prompts player 1 to enter into the category
-            time.sleep(1)
+            print("Player 2, you have 20 seconds to enter into the first category ")   # prompts player 1 to enter into the category
+            time.sleep(1)  # sets a delay of 1 second before calling the next line
             print("Start!\n")
 
 
-            timeout = time.time() + 10   # 30 seconds minutes from now
+            timeout = time.time() + 20   # 20 seconds minutes from now
             while True:
                 user_input=input('Please enter a word:') 
                 player1_set.add(user_input)     # appends user input into list  
@@ -246,7 +273,7 @@ class Categories(Score): # twenty one questions game
             print("Start!\n")
 
 
-            timeout2 = time.time() + 30   # 30 seconds from now
+            timeout2 = time.time() + 20   # 20 seconds from now
             while True:
                 user_input=input('Please enter a word:') 
                 player2_set.add(user_input)     # appends user input into list  
@@ -259,9 +286,11 @@ class Categories(Score): # twenty one questions game
             time.sleep(2)
             if len(player1_set) > len(player2_set):
                 print("Player 1 had more entries, Player 1 wins") 
+                self.add_score1(1)   # adds score to player 1 
 
             elif len(player1_set) < len(player2_set):
                 print("Player 2 has more entreies, Player 2 wins") 
+                self.add_score2(1)   # adds score to player 2
             else: 
                 print('There was a tie')
 
@@ -288,19 +317,18 @@ class Categories(Score): # twenty one questions game
 
 class HeadsOrTails(Score):  # each player bets on heads or tail 
    
-     def __init__(self,player1,player2):
-        super().__init__(player1,player2)
+     def __init__(self,score1,score2):
+        super().__init__(score1,score2)
         
      def start(self):  
-        p1_score=0
-        p2_score=0
+        
         while True: 
-          answer = random.randint(1,2)  # turn into a method 
-          player1_guess = input(" Plater 1, State your guess H or T")
+          answer = random.randint(1,2)  # gets a random num netween 1 and 2 that will represent the sides of a coin
+          player1_guess = input(" Plater 1, State your guess H or T")  # aks players to choose what the coin will be 
           player2_guess = input(" Plater 1, State your guess H or T")
           
           
-          if player1_guess == "H": 
+          if player1_guess == "H":  #
                 player1_guess=1 
           if player2_guess == "H": 
                 player2_guess=1
@@ -310,13 +338,18 @@ class HeadsOrTails(Score):  # each player bets on heads or tail
                 player1_guess=2 
           if player2_guess == "T": 
                 player2_guess=2
+
+          if answer==2:
+            coin="Tails"
+          if answer==1:  # determines coin based on the answer number 
+              coin="Heads"
          
           if player1_guess == answer:
-                 print('Player 1 guessed right, the answer was: ', answer)
-                 p1_score+=1
+                 print('Player 1 guessed right, the answer was: ', coin)  # determines the winner and displays the coin
+                 self.add_score1(1)  # adds 1 point to player 1 score in the "Score" class 
           else: 
-                 print('Player 2 guessed right, the answer was: ', answer)
-                 p2_score+=1
+                 print('Player 2 guessed right, the answer was: ', coin)
+                 self.add_score2(1)
         
           Continue = input('Play againz?(y/n):')    # unit test 
           if Continue == 'y': 
@@ -338,8 +371,8 @@ class HeadsOrTails(Score):  # each player bets on heads or tail
 
 class NumGuesserGame(Score):  # get x amount of guesses, with one player choosing to guess
     
-    def __init__(self,player1,player2):
-        super().__init__(player1,player2)
+    def __init__(self,score1,score2):
+        super().__init__(score1,score2)
 
     def start(self):
         while True:
@@ -366,6 +399,7 @@ class NumGuesserGame(Score):  # get x amount of guesses, with one player choosin
                             print('You have ', 10 - player1_count, ' guesses left.\n')
                         elif player1_guess == answer: 
                             print('Congrats you got it! The correct number was ', answer,'.')   # make sure to add score to score class 
+                            self.add_score1(1)  # adds to player 1 score 
                             break 
                         
                         if player1_count==10:  # statement for when the user runs out of guesses
@@ -391,6 +425,7 @@ class NumGuesserGame(Score):  # get x amount of guesses, with one player choosin
                             
                         elif player2_guess == answer2: 
                                 print('Congrats you got it! The correct number was ', answer2,'.')
+                                self.add_score2(1)
                                 break 
 
                         if player2_count==10: 
@@ -428,8 +463,8 @@ class NumGuesserGame(Score):  # get x amount of guesses, with one player choosin
 
 
 class Pig(Score): # pig 
-     def __init__(self,player1,player2):
-        super().__init__(player1,player2)
+     def __init__(self,score1,score2):
+        super().__init__(score1,score2)
          
      def start(self):
         p1_score=0   # variable declarations 
@@ -552,11 +587,13 @@ class Pig(Score): # pig
                         break
   
         if p1_score>p2_score: 
-                    print('Player 1 score is:',p1_score,'and Player 2 score is:',p2_score)  # send to score here 
+                    print('Player 1 score is:',p1_score,'and Player 2 score is:',p2_score)  
                     print('player 1 wins with a score of',p2_score)
+                    self.add_score1(1) # send to score here 
         elif p1_score<p2_score:         
-                    print('Player 2 score is:',p2_score,'and Player 1 score is:',p1_score)
+                    print('Player 2 score is:',p2_score,'and Player 1 score is:',p1_score)  # displays the score the winner won by 
                     print('player 2 wins with a score of: ',p2_score)
+                    self.add_score2(1) 
         
     
                     
