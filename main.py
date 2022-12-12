@@ -1,40 +1,66 @@
 import random
 import time
 class Score(): # keeps traack of score, every class will inherit it's score keep properties   
-    def __init__(self,score1,score2) -> None:
-      
-       self.score2  =score2
-       self.score1 = score1
+    def __init__(self,score1=0,score2=0) -> None:
+        """__init__ _summary_ - creates the score that will be inherited throughout all game classes
+
+        Arguments:
+            score1 {int} -- represents player 1's score 
+            score2 {int} -- initalizes as zero, since no player has had a chance to score a point at the beginnning of the game, represents player 2's score 
+        """
+        self.score2  =score2
+        self.score1 = score1
+    
+    
     def add_score1(self, num):# each class needs a way to store score and return it 
         self.score1 = self.score1 + num 
-    def add_score2(self,num):
-        self.score2 = self.score2 + num
+        """ _summary_ - adds a number to player 1's score 
+
+             Arguments:
+             num {int} - increases the score by adding itself to the overall score 
+        """
+    
+    def add_score2(self,num):   
+        """add_score2 _summary_  #adds score to player 2 
+
+        Arguments:
+            num {int} -- ncreases the score by adding itself to the overall score 
+        """
+        self.score2 = self.score2 + num  # adds score when called 
+  
     def __str__(self) -> str:
-         print(f"Overall Player 2 has a score of:",{self.score2},"\nand Player 1 has a score of: ",{self.score1}) #print statement for scrore across all the games 
+        """__str__ _summary_ - prints both players's score when called 
+
+        Returns:
+            _string_ --  description of both player's score
+        """
+        print(f"Overall, Player 2 has a score of:",{self.score2},"\nand Player 1 has a score of: ",{self.score1}) #print statement for scrore across all the games, using the object 
 # Each instance of any below game assumes 2 players 
 
 class RPS(Score): # rock paper scissors
     def __init__(self,score1,score2):
-        super().__init__(score1,score2) 
-    def start(self):
+        super().__init__(score1,score2)   
+    def start(self):  #creates an instance of RPS for aach object 
+
      while True:
         player1input= input("Player One Choose Rock,Paper,or Scissors\n")
-        player2input = input("Player Two Choose Rock,Paper,or Scissors\n")
-        if player1input == player2input: 
-            print(f"It's a draw, both players selected",{player2input})
+        player2input = input("Player Two Choose Rock,Paper,or Scissors\n")  # prompts users to input letters
+       
+        if player1input == player2input:  #draw condtion, if both players select the same option
+            print(f"It's a draw, both players selected",{player2input}) # prints the output that they made
     
-        elif player1input == "Rock": 
-                if player2input=="Scissors":
-                    print("Player 1 wins, Rock beats Scissors")   # add class specific object here 
-                    self.add_score1(1)
-                else: 
+        elif player1input == "Rock":  # splits the game into the situations one player is expected to undergo. Player 1 can only make 3 moves, so having 3 if-else statements is appropriate 
+                if player2input == "Scissors":  
+                    print("Player 1 wins, Rock beats Scissors")   #   win condtions for player 1, if player 2 puts in one of their 2 inputs, so we can further break down the if-else statement to have 2 more branches. 
+                    self.add_score1(1) # increases player 1 score by 1
+                else:  
                     print("Player 2 wins Paper Covers Rock")
-                    self.add_score2(1)
+                    self.add_score2(1)  # increases player 2 score by 1
         
         elif player1input == "Scissors":
                 
                 if player2input == "Rock":
-                    print("Player 2 wins, Rock beats Scissors")   # add class specific object here 
+                    print("Player 2 wins, Rock beats Scissors")   # 
                     self.add_score2(1)
                 else: 
                     print("Player 1 wins, Scissors cuts paper")
@@ -43,7 +69,7 @@ class RPS(Score): # rock paper scissors
         
         elif player1input == "Paper": 
             if player2input =="Rock":
-                    print("Player 1 wins, Paper beats Rock")   # add class specific object here 
+                    print("Player 1 wins, Paper beats Rock")   #
                     self.add_score1(1)
             else: 
                     print("Plater 2 wins, Scissors beats Paper")
@@ -51,12 +77,23 @@ class RPS(Score): # rock paper scissors
 
     
        
-        Continue = input('Play againz?(y/n):')    # unit test 
+        Continue = input('Play again?(y/n):')    # breaks while loop if player selects "n" for no, else continue the while loop and repeats the game until the option is displayed again. This exists for all games in ARCADE
         if Continue == 'n': 
             break 
        
         else: 
             continue 
+        """start _summary_ : "Start" generates the variables, user prompts,actual game mechanics, and begins the sequence to play. This occurs for all of the following classes, it is essenitally the "heart" of each game 
+
+            {{ARGS}} - self just initiates itslef when it is called, this method does not require any arguments
+        """
+        """__init__  summary: This method "supers" the _init_ from the Score class to inherit alls parameters. "Score" is the ingeritence relationship between all classes, since every game requires a score 
+
+       
+        """
+        
+        
+        
 
 
 
@@ -67,7 +104,7 @@ class madlibs(Score): #madlibs game, gives player 1 or 2 a score if the other fi
         while True:
             adj1= input('PLayer 1 Enter an Adjective: ')
             adj2= input('Player 1, Enter another Adjective: ')
-            noun1=input('Player 1 Enter a noun: ')
+            noun1=input('Player 1 Enter a noun: ')   # user prompts for variable inputs to be used to generate string
             noun2 = input('Player 1 Enter another noun: ')
             game=  input('Player 1 Enter a game: ')
 
@@ -104,7 +141,7 @@ class madlibs(Score): #madlibs game, gives player 1 or 2 a score if the other fi
 
             print("Player 2's madlib was: \n \n \n ",madlib2)  # prints player 1 madlib
 
-            playerwinner=input("Which player had the more entertaining madlib?(1/2)")
+            playerwinner=input("Which player had the more entertaining madlib?(1/2)")  #
 
             if playerwinner==1:
                 print('Player 1 wins ')
@@ -113,7 +150,7 @@ class madlibs(Score): #madlibs game, gives player 1 or 2 a score if the other fi
                 print('Player 2 wins')
                 self.add_score2(1)  # adds score to player 2 
             
-            Continue = input('Play againz?(y/n):')    # unit test 
+            Continue = input('Play againz?(y/n):')    # asks user to player again 
             if Continue == 'n': 
                 break 
         
@@ -131,9 +168,9 @@ class Hangman(Score):  # hangman game
           
           if start==1: 
                 answer_string = input('Player 1 , enter a word of your choice. Make sure Player 2 is looking away. ')
-                answer_string= answer_string.upper()
-                num_of_guesses = 0
-                attempts=[]
+                answer_string= answer_string.upper() # converts answer string to all uppercase to make matching easier 
+                num_of_guesses = 0  # since no player has inputted a guess, num_of_guesses must intializr as zero 
+                attempts=[]  # list of past attempts 
                 word_display= "_" * len(answer_string)
                 Win = 0
                 print('Player 2, you have 6 tries to guess the word. Enter one letter at a time ')
@@ -141,31 +178,31 @@ class Hangman(Score):  # hangman game
                 while num_of_guesses < 8 :
                     guess=input('Player 2, please guess a letter: ').upper() # turns all guesses into uppercase form
         
-                    if len(guess)==1 and guess.isalpha(): # if player enters a letter and is a letter
+                    if len(guess)==1 and guess.isalpha(): # if player enters a letter and is a letter then their guess is accepteable 
             
             
             
                         if guess not in answer_string:
                             print('Sorry,', guess,'is not in the word')
                             num_of_guesses +=1
-                            print('You have ',6-num_of_guesses,' left.')
+                            print('You have ',6-num_of_guesses,' left.') # displays how many guesses are left
                             attempts.append(guess) # throws the guess into a list of previous guesses
                         else:
-                            print('Good choice' , guess, ' is in the word')
+                            print('Good choice' , guess, ' is in the word')  # tells user that thier guess is in the word 
                             attempts.append(guess)
                             correct_attempts_display=list(word_display)
-                            indices = [x for x, letter in enumerate(answer_string) if letter==guess]
-                            for index in indices: 
+                            indices = [x for x, letter in enumerate(answer_string) if letter==guess]   # code that would have been used to display a hangman, but ran out of time before properly implemeneting a way to disaply a partial hangman
+                            for index in indices:   
                                 correct_attempts_display[index]=guess
                                 word_display=''.join(correct_attempts_display)
                             if '_' not in word_display: 
-                                Win=1
+                                Win=1   # when there are no more empty hyphens in the word display, then the player must have correctly guesses the word, therfore activatnig the win condtion
                     else:
                         print('Not a valid guess')
         
                     if Win==1:
-                        print('You guessed the word, the word was', answer_string)
-                        self.add_score2(1)   # adds score to player 1 
+                        print('You guessed the word, the word was', answer_string) # if win condtion is true award a point
+                        self.add_score2(1)   # adds score to player 2
                         break   # add a do you want to continue here 
                     elif num_of_guesses==6 :
                          print('Sorry the word was',answer_string )
@@ -179,7 +216,7 @@ class Hangman(Score):  # hangman game
     
         
           else: 
-                answer_string2 = input('Player 1 , enter a word of your choice. Make sure Player 2 is looking away. ')
+                answer_string2 = input('Player 1 , enter a word of your choice. Make sure Player 2 is looking away. ') #acts exactly the same as the code above, just for player 2
                 answer_string2= answer_string2.upper()
                 num_of_guesses = 0
                 attempts=[]
@@ -221,7 +258,7 @@ class Hangman(Score):  # hangman game
                          break
             
         
-          Continue = input('Play againz?(y/n):')    # unit test 
+          Continue = input('Play againz?(y/n):')    
           if Continue == 'n': 
                     break 
        
@@ -240,7 +277,7 @@ class Categories(Score): # twenty one questions game
         super().__init__(score1,score2)
         
      def start(self):
-        while True: 
+        while True: # plays until user request the game to break 
           
             print('Categories')
             alphabet= "abcdefghijklmnopqrstuvwxyz" # string with alphabet 
@@ -325,7 +362,7 @@ class HeadsOrTails(Score):  # each player bets on heads or tail
         while True: 
           answer = random.randint(1,2)  # gets a random num netween 1 and 2 that will represent the sides of a coin
           player1_guess = input(" Plater 1, State your guess H or T: ")  # aks players to choose what the coin will be 
-          player2_guess = input(" Plater 1, State your guess H or T: ")
+          player2_guess = input(" Player 2, State your guess H or T: ")
           
           
           if player1_guess == "H":  #
@@ -471,28 +508,28 @@ class Pig(Score): # pig
         p2_score=0
         p1_turn=True  # flags to determine which palyer is going first or second. Player 1 alawyas goes first 
         p2_turn=False  
-        hold1=False
+        hold1=False  # neither player is holding so hol1 and hold2 are false
         hold2=False
         dummy=0
         dummy2=0
         print('\nThe object of Pig is to be the first player to earn 50 points. You achieve this by rolling the dice and adding which number you roll to your overall score. Players are permitted to roll as many times as they’d like during their turn, but beware of rolling a 1! Doing so will cost you all the points you’ve collected during your turn\n') 
                     # prints instructions 
         while p1_score<=50 or p2_score<=50: # while both scores are less than 50
-            if hold1 and hold2:
+            if hold1 and hold2: # if both players hold, it indicates a wish for the game to end.
                  break;
             else:
-                if p1_turn: 
+                if p1_turn:  # starts with player 1 
                     if p1_score<50: # another condition to ensure both scores are less than 50
                         roll_1= input('Player 1, do you want to roll?(y/n) ') # prompts the user to hold or roll
-                        if roll_1=='y':
+                        if roll_1=='y': # if the player indicates they want to play, this continues the operation for the player
                             dice1=random.randint(1,6)  # generates dice roll
                         
 
                             if dice1==1:   # when a dice roll is "1" the player forfeights points earned
-                                    # dummy keeps track of the score at the time "1" is rolled 
-                                    print('Sorry, player 1 rolled a', dice1,' you lost all your points this turn')
+                                  
+                                    print('Sorry, Player 1 rolled a', dice1,' you lost all your points this turn')
                                     print('Your score is now', dummy,'\n')  #dummy becomes 
-                                    p1_score=dummy
+                                    p1_score=dummy     # dummy keeps track of the score at the time "1" is rolled, and changes the score back to what it was in the previos roll
                                     p2_turn=True
                                     p1_turn=False
                                     
@@ -511,7 +548,7 @@ class Pig(Score): # pig
                                         p2_turn=False
                                         p1_turn=True
                                     else: 
-                                        dummy=p1_score
+                                        dummy=p1_score # saves score for this turn to be used in case a player rolls a 1 and loses all gained score 
                                         p2_turn=True
                                         p1_turn=False
                                         hold1=True
@@ -521,8 +558,8 @@ class Pig(Score): # pig
                 
                     
                     elif roll_1=='n':   
-                        print('Your score is: ', p1_score,)
-                        dummy=p1_score
+                        print('Your score is: ', p1_score,) # displays score
+                        dummy=p1_score 
                         p1_turn=False  
                         p2_turn=True
                         hold1=True
@@ -536,11 +573,11 @@ class Pig(Score): # pig
         
         
         
-                elif p2_turn:  # statement when it's player 2's turn
-                    if p2_score<50:
+                elif p2_turn:  # statement when it's player 2's turn, operates exactly like player 1 
+                    if p2_score<50: # ensures player 2 has less than the win condtion 
                         roll_2= input('Player 2, do you want to roll?(y/n) ')
                         if roll_2=='y':
-                            dice2=random.randint(1,3)
+                            dice2=random.randint(1,6) #dice face from 1 to 6
                             
 
                             if dice2==1:
@@ -560,14 +597,14 @@ class Pig(Score): # pig
                                         print('Player 2, your score is: ',p2_score)
                                         break;
                                     else:print('Player 2, your score is', p2_score,'\n')
-                                    terminate_turn=input('Do you want to hold?(y/n)')
+                                    terminate_turn=input('Do you want to hold?(y/n)') # asks player 2 to end turn
                                     if terminate_turn=='n':
                                         p2_turn=True
                                         p1_turn=False
                                     else: 
                                         p2_turn=False
                                         dummy2=p1_score
-                                        end_game= input('Player 1 do you want hold and end the game?(y/n)')
+                                        end_game= input('Player 1 do you want hold and end the game?(y/n)') # asks player 1 if they want to hold their score as well, ending the game since no player wants to roll
                                         if end_game=='y':
                                             hold2=True
                                         else:
@@ -577,7 +614,7 @@ class Pig(Score): # pig
                 
                 
                         elif roll_1=='n':   
-                            print('Your score is: ', p1_score,)
+                            print('Your score is: ', p1_score,)  # prints score
                             dummy2=p2_score
                             p1_turn=False  
                             p2_turn=True       
@@ -593,7 +630,7 @@ class Pig(Score): # pig
         elif p1_score<p2_score:         
                     print('Player 2 score is:',p2_score,'and Player 1 score is:',p1_score)  # displays the score the winner won by 
                     print('player 2 wins with a score of: ',p2_score)
-                    self.add_score2(1) 
+                    self.add_score2(1)  # adds to score 2
         
     
                     
